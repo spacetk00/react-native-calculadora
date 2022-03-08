@@ -28,12 +28,12 @@ export default function App() {
   ];
 
   const [currentNumber, setCurrentNumber] = useState('');
-  const [lastNumber, setLastNumber] = useState('');
+  let [lastNumber, setLastNumber] = useState('');
 
   function calculator() {
     const splitNumbers = currentNumber.split(' ');
     const fistNumber = parseFloat(splitNumbers[0]);
-    const lastNumber = parseFloat(splitNumbers[2]);
+    lastNumber = parseFloat(splitNumbers[2]);
     const operator = splitNumbers[1];
 
     // Faz ação referente tecla pressionada
