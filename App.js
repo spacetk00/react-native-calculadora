@@ -56,10 +56,10 @@ export default function App() {
   function handleInput(buttonPressed) {
     console.log(buttonPressed); // Mostra no Console a tecla pressionada
     if (
-      (buttonPressed === '+') |
-      (buttonPressed === '-') |
-      (buttonPressed === 'x') |
-      (buttonPressed === '/')
+      buttonPressed === '+' ||
+      buttonPressed === '-' ||
+      buttonPressed === 'x' ||
+      buttonPressed === '/'
     ) {
       setCurrentNumber(currentNumber + ' ' + buttonPressed + ' ');
       return;
