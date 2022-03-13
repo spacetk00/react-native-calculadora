@@ -35,14 +35,23 @@ export default function App() {
     const fistNumber = parseFloat(splitNumbers[0]);
     lastNumber = parseFloat(splitNumbers[2]);
     const operator = splitNumbers[1];
+    const segundoOperador = splitNumbers[3];
 
     // Faz ação referente tecla pressionada
     switch (operator) {
       case '+':
-        setCurrentNumber((fistNumber + lastNumber).toString());
+        if (segundoOperador === '%') {
+          setCurrentNumber((fistNumber * lastNumber) / 100 + fistNumber);
+        } else {
+          setCurrentNumber((fistNumber + lastNumber).toString());
+        }
         return;
       case '-':
-        setCurrentNumber((fistNumber - lastNumber).toString());
+        if (segundoOperador === '%') {
+          setCurrentNumber(fistNumber - (fistNumber * lastNumber) / 100);
+        } else {
+          setCurrentNumber((fistNumber - lastNumber).toString());
+        }
         return;
       case 'x':
         setCurrentNumber((fistNumber * lastNumber).toString());
@@ -62,8 +71,10 @@ export default function App() {
       buttonPressed === '/'
     ) {
       setCurrentNumber(currentNumber + ' ' + buttonPressed + ' ');
-      return;
+    } else {
+      setCurrentNumber(currentNumber + buttonPressed);
     }
+
     switch (buttonPressed) {
       case 'DEL':
         setCurrentNumber(currentNumber.substring(0, currentNumber.length - 1));
@@ -83,9 +94,12 @@ export default function App() {
           setCurrentNumber(currentNumber * -1);
         }
         return;
+      case '%':
+        setCurrentNumber(currentNumber + ' ' + buttonPressed);
+        return;
     }
 
-    setCurrentNumber(currentNumber + buttonPressed);
+    //setCurrentNumber(currentNumber + buttonPressed);
   }
 
   return (
